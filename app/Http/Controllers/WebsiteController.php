@@ -18,6 +18,10 @@ class WebsiteController extends Controller
         return view('dashboard');
     }
 
+    public function settings(){
+        return view('settings');
+    }
+
     public function login(){
         return view('login');
     }
@@ -56,6 +60,7 @@ class WebsiteController extends Controller
       $user->password = Hash::make($request->password);
       $user->status = 'Pending';
       $user->token = $token;
+      $user->role = 2;
       $user->save();
 
       $verification_link = url('register/verify/'.$token.'/'.$request->email);
